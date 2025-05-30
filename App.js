@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, ScrollView, RefreshControl, StyleSheet, Text } from 'react-native';
-import BookList from './components/BookList.js';
+import { View, ScrollView, RefreshControl, Text, SafeAreaView } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import BookList from './components/BookList';
 import AddBook from './components/AddBook';
-import { getBooks } from './api/books.js';
 
 export default function App() {
   const [books, setBooks] = useState([]);
@@ -27,24 +27,29 @@ export default function App() {
   }, []);
 
   return (
-    <ScrollView
-      contentContainerStyle={styles.container}
-      refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-      }
-    >
-      <Text style={styles.title}>📚 Gestione Libri</Text>
-      <AddBook onAdd={loadBooks} />
-      <BookList books={books} onDelete={loadBooks} />
-    </ScrollView>
+    <SafeAreaView style={styles.container}> 
+      <StatusBar style="auto" />
+      <ScrollView
+        contentContainerStyle={styles.scrollContainer}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
+        <Text style={styles.title}>📚 Gestione Libri</Text>
+        <AddBook onAdd={loadBooks} />
+        <BookList books={books} onDelete={loadBooks} />
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
-    flexGrow: 1,
-    padding: 20,
+    flex: 1,
     backgroundColor: '#f5f5f5',
+  },
+  scrollContainer: {
+    padding: 20,
   },
   title: {
     fontSize: 24,
@@ -52,4 +57,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 20,
   },
-});
+};

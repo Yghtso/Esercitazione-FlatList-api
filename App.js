@@ -1,37 +1,25 @@
-import { useState, useEffect } from 'react';
-import { ScrollView, RefreshControl, Text, SafeAreaView } from 'react-native';
+// App.js
+import { Text, SafeAreaView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import BookList from './components/BookList';
-import AddBook from './components/AddBook';
-import { useBooks } from './hooks/useBooks';
+import AddBookForm from './components/AddBookForm';
+import { BooksProvider } from './contexts/BooksContext'; // Import the Provider
 
 export default function App() {
-
-  const { books, loading, error, addBook, deleteBook, fetchBooks } = useBooks();
-  
-  const onRefresh = async () => {
-    fetchBooks();
-  };
-
-  useEffect(async () => {
-    fetchBooks();
-  }, []);
+  // Now, App.js does NOT call useBooks directly.
+  // The state and functions are provided by BooksProvider to its children.
 
   return (
     <>
-    <StatusBar style="auto" />
-    <SafeAreaView style={styles.container}> 
-        <Text style={styles.title}>📚 Gestione Libri</Text>
-        <AddBook onAdd={loadBooks} />
-      <ScrollView
-        contentContainerStyle={styles.scrollContainer}
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }
-      >
-        <BookList books={books} onDelete={loadBooks} />
-      </ScrollView>
-    </SafeAreaView>
+      <StatusBar style="auto" />
+      {/* Wrap your components with the BooksProvider */}
+      <BooksProvider>
+        <SafeAreaView style={styles.container}> 
+          <Text style={styles.title}>📚 Gestione Libri</Text>
+          <AddBookForm /> {/* No props needed for AddBookForm */}
+          <BookList />    {/* No props needed for BookList */}
+        </SafeAreaView>
+      </BooksProvider>
     </>
   );
 }
@@ -42,9 +30,6 @@ const styles = {
     backgroundColor: '#fff',
     marginHorizontal: 25,
     marginTop: 30,
-  },
-  scrollContainer: {
-    padding: 20,
   },
   title: {
     fontSize: 36,

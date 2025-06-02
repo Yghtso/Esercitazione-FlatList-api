@@ -1,6 +1,4 @@
-// components/Book.js
-import React from 'react';
-import { View, Text, Image, Button, StyleSheet } from 'react-native'; // Import StyleSheet for better styling
+import { View, Text, Image, Button, StyleSheet } from 'react-native';
 
 const Book = ({ book, onDeleteBook }) => {
   return (
@@ -18,7 +16,7 @@ const Book = ({ book, onDeleteBook }) => {
         <Text style={styles.published}>Published: {new Date(book.published_at).toLocaleDateString()}</Text>
         <Button
           title="Delete"
-          onPress={() => onDeleteBook(book.id)} // Use the onDeleteBook prop
+          onPress={() => onDeleteBook(book.id)}
           color="red"
         />
       </View>

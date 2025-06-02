@@ -27,34 +27,38 @@ export default function App() {
   }, []);
 
   return (
+    <>
+    <StatusBar style="auto" />
     <SafeAreaView style={styles.container}> 
-      <StatusBar style="auto" />
+        <Text style={styles.title}>📚 Gestione Libri</Text>
+        <AddBook onAdd={loadBooks} />
       <ScrollView
         contentContainerStyle={styles.scrollContainer}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
-        <Text style={styles.title}>📚 Gestione Libri</Text>
-        <AddBook onAdd={loadBooks} />
         <BookList books={books} onDelete={loadBooks} />
       </ScrollView>
     </SafeAreaView>
+    </>
   );
 }
 
 const styles = {
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#fff',
+    marginHorizontal: 25,
+    marginTop: 30,
   },
   scrollContainer: {
     padding: 20,
   },
   title: {
-    fontSize: 24,
+    fontSize: 36,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 20,
+    marginVertical: 30,
   },
 };

@@ -33,14 +33,14 @@ const styles = StyleSheet.create({
     borderBottomColor: '#ccc',
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 10, // Add some space between books
-    backgroundColor: '#f9f9f9', // Light background for visibility
-    borderRadius: 8, // Rounded corners
-    shadowColor: '#000', // Basic shadow for depth
+    marginBottom: 10,
+    backgroundColor: '#f9f9f9',
+    borderRadius: 8,
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 3,
-    elevation: 3, // Android shadow
+    elevation: 3,
   },
   coverImage: {
     width: 80,

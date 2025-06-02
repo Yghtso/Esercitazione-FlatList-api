@@ -1,8 +1,6 @@
-// components/BookList.js
-import React from 'react';
 import { FlatList, Text, View, ActivityIndicator, StyleSheet } from 'react-native';
-import { useBooks } from '../contexts/BooksContext'; // Make sure the path is correct
-import Book from './Book'; // Import the new Book component
+import { useBooks } from '../contexts/BooksContext';
+import Book from './Book';
 
 const BookList = () => {
   const { books, loading, error, deleteBook } = useBooks();
@@ -37,13 +35,12 @@ const BookList = () => {
       data={books}
       keyExtractor={(item) => item.id.toString()}
       renderItem={({ item }) => (
-        // Render the Book component for each item
         <Book
-          book={item} // Pass the individual book object as a prop
-          onDeleteBook={deleteBook} // Pass the deleteBook function
+          book={item}
+          onDeleteBook={deleteBook}
         />
       )}
-      contentContainerStyle={styles.listContentContainer} // Add padding for the list
+      contentContainerStyle={styles.listContentContainer}
     />
   );
 };
@@ -59,7 +56,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   listContentContainer: {
-    paddingVertical: 10, // Add vertical padding to the list itself
+    paddingVertical: 10,
   },
 });
 

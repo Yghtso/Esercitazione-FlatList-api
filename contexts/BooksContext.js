@@ -1,5 +1,3 @@
-// contexts/BooksContext.js
-
 import React, { createContext, useState, useEffect, useCallback, useContext } from 'react';
 
 const API_BASE_URL = 'https://soareesreact.ddns.net/books';
@@ -107,7 +105,6 @@ export const BooksProvider = ({ children }) => {
   return <BooksContext.Provider value={value}>{children}</BooksContext.Provider>;
 };
 
-// 3. Create a custom hook to consume the Context
 export const useBooks = () => {
   const context = useContext(BooksContext);
   if (context === undefined) {

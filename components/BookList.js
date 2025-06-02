@@ -5,7 +5,7 @@ import Book from './Book';
 const BookList = () => {
   const { books, loading, error, deleteBook, fetchBooks } = useBooks();
 
-  if (loading && books.length === 0 && !error) { // Added !error to prevent loader over error
+  if (loading && books.length === 0 && !error) {
     return (
       <View style={styles.centered}>
         <ActivityIndicator size="large" color="#0000ff" />
@@ -35,7 +35,7 @@ const BookList = () => {
       )}
       contentContainerStyle={[
         styles.listContentContainer,
-        books.length === 0 && styles.emptyListContentContainer // Apply style for empty list
+        books.length === 0 && styles.emptyListContentContainer
       ]}
 
       onRefresh={fetchBooks}

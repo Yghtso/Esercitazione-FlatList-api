@@ -52,22 +52,22 @@ export default function AddBookForm() {
         placeholder="Titolo del libro"
         value={title}
         onChangeText={setTitle}
-        placeholderTextColor="#888"
+        placeholderTextColor="#999"
       />
       <TextInput
         style={styles.input}
         placeholder="Autore"
         value={author}
         onChangeText={setAuthor}
-        placeholderTextColor="#888"
+        placeholderTextColor="#999"
       />
       <TextInput
         style={styles.input}
-        placeholder="Data di pubblicazione (YYYY-MM-DD)"
+        placeholder="Data (YYYY-MM-DD)"
         value={publishedAt}
         onChangeText={setPublishedAt}
         keyboardType="number-pad"
-        placeholderTextColor="#888"
+        placeholderTextColor="#999"
       />
       <TextInput
         style={styles.input}
@@ -76,7 +76,7 @@ export default function AddBookForm() {
         onChangeText={setCoverImage}
         keyboardType="url"
         autoCapitalize="none"
-        placeholderTextColor="#888"
+        placeholderTextColor="#999"
       />
       
       <TouchableOpacity
@@ -96,41 +96,41 @@ export default function AddBookForm() {
 
 const styles = StyleSheet.create({
   formContainer: {
-    padding: 20,
+    padding: 15,
     backgroundColor: '#fff',
-    borderRadius: 15,
+    borderRadius: 12,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 8,
-    marginBottom: 30,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 4,
+    elevation: 4,
+    marginBottom: 20,
   },
   input: {
-    height: 50,
+    height: 45,
     borderColor: '#e0e0e0',
     borderWidth: 1,
-    marginBottom: 15,
-    paddingHorizontal: 15,
+    marginBottom: 10,
+    paddingHorizontal: 12,
     backgroundColor: '#f8f8f8',
-    borderRadius: 10,
-    fontSize: 16,
+    borderRadius: 8,
+    fontSize: 15,
     color: '#333',
   },
   submitButton: {
-    height: 50,
+    height: 45,
     backgroundColor: '#007bff',
-    borderRadius: 10,
+    borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: 15,
   },
   submitButtonDisabled: {
     backgroundColor: '#a0c0e0',
   },
   submitText: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '600',
   },
 });

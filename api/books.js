@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost/books';
+const API_URL = 'https://soareesreact.ddns.net/books';
 
 export const getBooks = async () => {
   const response = await fetch(API_URL);

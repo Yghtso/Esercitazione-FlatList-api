@@ -1,14 +1,15 @@
+// components/BookList.js
 import React from 'react';
-import { FlatList, Text, View, ActivityIndicator, Button, Image } from 'react-native';
-import { useBooks } from '../contexts/BooksContext'; // Import the hook from your context file
+import { FlatList, Text, View, ActivityIndicator, StyleSheet } from 'react-native';
+import { useBooks } from '../contexts/BooksContext'; // Make sure the path is correct
+import Book from './Book'; // Import the new Book component
 
 const BookList = () => {
-  // Directly consume the hook here!
-  const { books, loading, error, deleteBook } = useBooks(); 
+  const { books, loading, error, deleteBook } = useBooks();
 
   if (loading) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={styles.centered}>
         <ActivityIndicator size="large" color="#0000ff" />
         <Text>Loading books...</Text>
       </View>
@@ -17,15 +18,15 @@ const BookList = () => {
 
   if (error) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{ color: 'red' }}>Error: {error}</Text>
+      <View style={styles.centered}>
+        <Text style={styles.errorText}>Error: {error}</Text>
       </View>
     );
   }
 
   if (books.length === 0) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={styles.centered}>
         <Text>No books available.</Text>
       </View>
     );
@@ -35,29 +36,31 @@ const BookList = () => {
     <FlatList
       data={books}
       keyExtractor={(item) => item.id.toString()}
-      renderItem={({ item: book }) => (
-        <View style={{ padding: 15, borderBottomWidth: 1, borderBottomColor: '#ccc', flexDirection: 'row', alignItems: 'center' }}>
-          {book.cover_image && (
-            <Image 
-              source={{ uri: book.cover_image }} 
-              style={{ width: 80, height: 120, marginRight: 15, borderRadius: 5 }} 
-              resizeMode="cover"
-            />
-          )}
-          <View style={{ flex: 1 }}>
-            <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{book.title}</Text>
-            <Text>Author: {book.author}</Text>
-            <Text>Published: {new Date(book.published_at).toLocaleDateString()}</Text>
-            <Button 
-              title="Delete" 
-              onPress={() => deleteBook(book.id)} 
-              color="red"
-            />
-          </View>
-        </View>
+      renderItem={({ item }) => (
+        // Render the Book component for each item
+        <Book
+          book={item} // Pass the individual book object as a prop
+          onDeleteBook={deleteBook} // Pass the deleteBook function
+        />
       )}
+      contentContainerStyle={styles.listContentContainer} // Add padding for the list
     />
   );
 };
+
+const styles = StyleSheet.create({
+  centered: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  errorText: {
+    color: 'red',
+    fontSize: 16,
+  },
+  listContentContainer: {
+    paddingVertical: 10, // Add vertical padding to the list itself
+  },
+});
 
 export default BookList;

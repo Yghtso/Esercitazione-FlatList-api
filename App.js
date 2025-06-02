@@ -1,21 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { View, ScrollView, RefreshControl, Text, SafeAreaView } from 'react-native';
+import { useState, useEffect } from 'react';
+import { ScrollView, RefreshControl, Text, SafeAreaView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import BookList from './components/BookList';
 import AddBook from './components/AddBook';
 
 export default function App() {
-  const [books, setBooks] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
-
-  const loadBooks = async () => {
-    try {
-      const data = await getBooks();
-      setBooks(data);
-    } catch (error) {
-      console.error("Errore nel caricamento:", error);
-    }
-  };
 
   const onRefresh = () => {
     setRefreshing(true);

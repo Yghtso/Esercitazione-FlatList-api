@@ -21,7 +21,7 @@ export default function AddBook({ onAdd }) {
         published_at: `${publishedAt}T00:00:00Z`,
         cover_image: coverImage,
       });
-      Alert.alert("Successo", "Libro aggiunto!");
+      Alert.alert("Successo", "Libro aggiunto");
       setTitle('');
       setAuthor('');
       setPublishedAt('');
